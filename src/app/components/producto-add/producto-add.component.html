@@ -1,0 +1,32 @@
+<div class="col-lg-10 offset-lg-1">
+    <div class="jumbotron">
+        <h2>{{titulo}}</h2>
+        <hr>
+
+        <form #formProducto="ngForm" class="col-lg-6" id="formProducto" (ngSubmit)="onSubmit()">
+
+            <label for="nombre">Nombre
+                <span class="badge badge-danger" *ngIf="!nombre.valid && nombre.touched">El nombre es obligatorio</span>
+            </label>
+            <input required type="text" #nombre="ngModel" [(ngModel)]="producto.nombre" name="nombre" class="form-control">
+            
+            <label for="descripcion">Descripcion
+                <span class="badge badge-danger" *ngIf="!descripcion.valid && descripcion.touched" >La descripcion es obligatoria</span>
+            </label>
+            <textarea required [(ngModel)]="producto.descripcion" #descripcion="ngModel" name="descripcion" class="form-control"></textarea>
+            
+            <label for="precio">Precio
+                <span  class="badge badge-danger" *ngIf="!precio.valid && precio.touched" >El precio no es correcto</span>
+            </label>
+            <input required type="text" name="precio" [(ngModel)]="producto.precio" pattern="[0-9]+" #precio="ngModel" class="form-control">
+            
+            <label>Imagen</label>
+            <input type="file" class="form-control-file" (change)="fileChangeEvent($event)" >
+
+            <input type="submit" value="{{titulo}}" class="btn btn-primary" id="enviar" [disabled]="!formProducto.form.valid">
+        </form>
+        
+        
+    </div>
+</div>
+
